@@ -1,0 +1,8 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <NuspecFile>HelloWorldLambda.Model.nuspec</NuspecFile>
+  </PropertyGroup>
+
+</Project>

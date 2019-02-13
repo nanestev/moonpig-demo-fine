@@ -1,0 +1,51 @@
+plan-us-east-1-dotnetlambda-dev:
+  stage: generate-plan-dev
+  variables:
+    AwsAccountId: ${aws_account_id}
+    AwsRoleName: ${aws_role_name}
+    AwsDefaultRegion: us-east-1
+    Environment: dev
+    TerragruntDirectory: "deploy/config/${Environment}/${AwsDefaultRegion}/dotnet-lambda"
+    DotNetLambdaPackageFilePath: "/builds/Moonpig-Sandbox/moonpig-ops-traffic/hello-lambda-dotnet.zip"
+    TerraformVariables: '-var LambdaPackageFilePath=${DotNetLambdaPackageFilePath}'
+    PlanFileName: 'dotnet-lambda-${AwsDefaultRegion}-${Environment}.tfplan'
+  extends: .terragrunt-plan-template
+
+plan-us-west-1-dotnetlambda-dev:
+  stage: generate-plan-dev
+  variables:
+    AwsAccountId: ${aws_account_id}
+    AwsRoleName: ${aws_role_name}
+    AwsDefaultRegion: us-west-1
+    Environment: dev
+    TerragruntDirectory: "deploy/config/${Environment}/${AwsDefaultRegion}/dotnet-lambda"
+    DotNetLambdaPackageFilePath: "/builds/Moonpig-Sandbox/moonpig-ops-traffic/hello-lambda-dotnet.zip"
+    TerraformVariables: '-var LambdaPackageFilePath=${DotNetLambdaPackageFilePath}'
+    PlanFileName: 'dotnet-lambda-${AwsDefaultRegion}-${Environment}.tfplan'
+  extends: .terragrunt-plan-template
+
+plan-us-east-1-dotnetlambda-test:
+  stage: generate-plan-test
+  variables:
+    AwsAccountId: ${aws_account_id}
+    AwsRoleName: ${aws_role_name}
+    AwsDefaultRegion: us-east-1
+    Environment: test
+    TerragruntDirectory: "deploy/config/${Environment}/${AwsDefaultRegion}/dotnet-lambda"
+    DotNetLambdaPackageFilePath: "/builds/Moonpig-Sandbox/moonpig-ops-traffic/hello-lambda-dotnet.zip"
+    TerraformVariables: '-var LambdaPackageFilePath=${DotNetLambdaPackageFilePath}'
+    PlanFileName: 'dotnet-lambda-${AwsDefaultRegion}-${Environment}.tfplan'
+  extends: .terragrunt-plan-template
+
+plan-us-west-1-dotnetlambda-test:
+  stage: generate-plan-test
+  variables:
+    AwsAccountId: ${aws_account_id}
+    AwsRoleName: ${aws_role_name}
+    AwsDefaultRegion: us-west-1
+    Environment: test
+    TerragruntDirectory: "deploy/config/${Environment}/${AwsDefaultRegion}/dotnet-lambda"
+    DotNetLambdaPackageFilePath: "/builds/Moonpig-Sandbox/moonpig-ops-traffic/hello-lambda-dotnet.zip"
+    TerraformVariables: '-var LambdaPackageFilePath=${DotNetLambdaPackageFilePath}'
+    PlanFileName: 'dotnet-lambda-${AwsDefaultRegion}-${Environment}.tfplan'
+  extends: .terragrunt-plan-template

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>HelloWorldLambda.Model</id>
+    <version>0.1.0</version>
+    <authors>Glen Thomas</authors>
+    <description>Hello World .NET Core Lambda types</description>
+    <language>en-GB</language>
+  </metadata>
+  <files>
+    <file src="bin\Debug\netstandard2.0\HelloWorldLambda.Model.dll" target="lib\netstandard2.0\HelloWorldLambda.Model.dll" />
+  </files>
+</package>

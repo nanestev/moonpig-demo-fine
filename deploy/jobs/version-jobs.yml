@@ -1,0 +1,32 @@
+version:
+  stage: version
+  before_script:
+  - echo 
+  image:
+    name: gittools/gitversion
+    entrypoint: [""]
+  script:
+  - mono /usr/lib/GitVersion/GitVersion.exe /output json /showvariable SemVer > ${VersionFile}
+  artifacts:
+    paths:
+    - ${VersionFile}
+  only:
+    variables:
+      - $Versioning == "git"
+
+version:
+  stage: version
+  before_script:
+  - echo 
+  script:
+  # we update all inner version files with the current build number
+  - find $PWD -type f -iname "${VersionFile}" -print0 | xargs -0 sed -i -E "s/[[:digit:]]+$/${CI_PIPELINE_IID}/g"
+  artifacts:
+    paths:
+    - "${VersionFile}"
+    - "*/${VersionFile}"
+    - "*/*/${VersionFile}"
+    - "*/*/*/${VersionFile}"
+  only:
+    variables:
+      - $Versioning == "simple"

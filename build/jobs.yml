@@ -1,0 +1,11 @@
+build-dotnet:
+  image: "$BUILD_REGISTRY/build-dotnet21:latest"
+  stage: build
+  script:
+  - deploy/bash/build-stage-dotnet ${DotNetLambdaPackageFileName}
+  artifacts:
+    paths:
+    - ${DotNetLambdaPackageFileNamePrefix}*
+    reports:
+      junit: hello-lambda-dotnet-unittest-results.xml
+    expire_in: 1 day

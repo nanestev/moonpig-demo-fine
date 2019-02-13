@@ -1,0 +1,26 @@
+image: "$BUILD_REGISTRY/deploy-aws:latest"
+
+stages:
+  - build
+  - generate-plan-dev
+  - deploy-dev
+  - generate-plan-test
+
+variables:
+  DotNetLambdaPackageFileNamePrefix: "hello-lambda-dotnet"
+  DotNetPlanFileName: "dotnet-lambda.tfplan"
+  VersionFile: "version"
+  NuGetFeedUrl: ${NUGET_FEED_URL}
+  NuGetApiKey: ${NUGET_API_KEY}
+
+before_script:
+  - chmod -R 755 deploy/bash/
+  - CurrentDirectory=$(pwd)
+  - export DOTNET_APP_VERSION=$(cat "source/hello-lambda-dotnet/HelloWorldLambda/${VersionFile}" | sed -E "s/[[:digit:]]+$/${CI_PIPELINE_IID}/g")
+  - echo DOTNET_APP_VERSION=$DOTNET_APP_VERSION
+  - export DotNetLambdaPackageFileName="${DotNetLambdaPackageFileNamePrefix}.${DOTNET_APP_VERSION}.zip"
+
+include:
+  - local: '/build/jobs.yml'
+  #- local: '/deploy/jobs/plan-jobs.yml'
+  #- local: '/deploy/jobs/deploy-jobs.yml'
