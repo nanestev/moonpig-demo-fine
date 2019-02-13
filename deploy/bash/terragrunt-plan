@@ -1,0 +1,13 @@
+#!/bin/bash
+
+terragruntDirectory=$1
+planFileName=$2
+awsDefaultRegion=$3
+lambdaZipPath=$4
+
+export AWS_DEFAULT_REGION=$awsDefaultRegion
+
+currentDirectory=$(pwd)
+planFilePath="$currentDirectory/$planFileName"
+
+terragrunt plan -input=false -out=$planFilePath -var "EnvironmentName=dev" -var "LambdaPackageFilePath=$lambdaZipPath" --terragrunt-non-interactive --terragrunt-working-dir $terragruntDirectory

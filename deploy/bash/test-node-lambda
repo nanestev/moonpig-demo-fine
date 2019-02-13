@@ -1,0 +1,15 @@
+#!/bin/bash
+
+currentDirectory=$(pwd)
+cd source/hello-lambda-nodejs
+npm test
+
+unitTestReturnCode=$?
+
+if [ ! $unitTestReturnCode -eq 0 ]
+then
+  echo "Unit tests failed! Return code $unitTestReturnCode"
+  exit 1
+fi
+
+cd $currentDirectory

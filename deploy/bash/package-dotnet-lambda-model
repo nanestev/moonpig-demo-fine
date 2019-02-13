@@ -1,0 +1,9 @@
+#!/bin/bash
+
+PackageFileName=$1
+
+cd source/hello-lambda-dotnet/HelloWorldLambda.Model
+dotnet pack HelloWorldLambda.Model.csproj /p:NuspecFile=HelloWorldLambda.Model.nuspec --no-build --output ./
+if [[ $NuGetFeedUrl ]] && [[ $NuGetApiKey ]]; then
+    dotnet nuget push *.nupkg --source $NuGetFeedUrl --api-key $NuGetApiKey --timeout 120
+fi

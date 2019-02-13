@@ -1,0 +1,6 @@
+#!/bin/bash
+
+PackageFileName=$1
+
+cd source/hello-lambda-dotnet/HelloWorldLambda/bin/Debug/netcoreapp2.1
+zip -r ../../../../../../$PackageFileName ./*

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+DotNetPackageFileName=$1
+
+echo "Zipping into file " + $DotNetPackageFileName
+
+. deploy/bash/build-dotnet-lambda
+deploy/bash/package-dotnet-lambda $DotNetPackageFileName
+deploy/bash/package-dotnet-lambda-model

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+terragruntDirectory=$1
+planFileName=$2
+awsDefaultRegion=$3
+
+export AWS_DEFAULT_REGION=$awsDefaultRegion
+
+currentDirectory=$(pwd)
+planFilePath="${currentDirectory}/${planFileName}"
+
+if [ ! -f "$planFilePath" ]
+then
+  echo "No plan file to deploy. Exiting..."
+  exit 1;
+fi
+
+cp $planFilePath "$terragruntDirectory/$planFileName"
+
+terragrunt apply -auto-approve $planFileName --terragrunt-non-interactive --terragrunt-working-dir $terragruntDirectory

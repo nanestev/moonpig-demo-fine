@@ -1,0 +1,13 @@
+#!/bin/bash
+
+dotnet restore source/hello-lambda-dotnet/HelloWorldLambda.sln
+dotnet build source/hello-lambda-dotnet/HelloWorldLambda.sln
+dotnet test source/hello-lambda-dotnet/HelloWorldLambda.Tests/HelloWorldLambda.Tests.csproj "--logger:junit;LogFilePath=../../../hello-lambda-dotnet-unittest-results.xml"
+
+unitTestReturnCode=$?
+
+if [ ! $unitTestReturnCode -eq 0 ]
+then
+  echo "Unit tests failed! Return code $unitTestReturnCode"
+  exit 1
+fi
