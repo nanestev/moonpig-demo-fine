@@ -14,7 +14,7 @@ variables:
   NuGetApiKey: ${NUGET_API_KEY}
 
 before_script:
-  - chmod -R 755 deploy/bash/
+  #- chmod -R 755 deploy/bash/
   - CurrentDirectory=$(pwd)
   - export DOTNET_APP_VERSION=$(cat "source/hello-lambda-dotnet/HelloWorldLambda/${VersionFile}" | sed -E "s/[[:digit:]]+$/${CI_PIPELINE_IID}/g")
   - echo DOTNET_APP_VERSION=$DOTNET_APP_VERSION

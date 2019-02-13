@@ -5,12 +5,9 @@ build-dotnet:
   - dotnet restore source/hello-lambda-dotnet/HelloWorldLambda.sln
   - dotnet build source/hello-lambda-dotnet/HelloWorldLambda.sln
   - dotnet test source/hello-lambda-dotnet/HelloWorldLambda.Tests/HelloWorldLambda.Tests.csproj "--logger:junit;LogFilePath=../../../hello-lambda-dotnet-unittest-results.xml"
-
   artifacts:
     paths:
     - ${DotNetLambdaPackageFileNamePrefix}*
     reports:
       junit: hello-lambda-dotnet-unittest-results.xml
     expire_in: 1 day
-
-
